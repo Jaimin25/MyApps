@@ -116,7 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .toLowerCase()
                                     .contains(value.toLowerCase()))
                                 .toList();
-                            _taskList = _filterList;
+                            if (_filterList!.isNotEmpty) {
+                              _taskList = _filterList;
+                            } else {
+                              _filterList = _taskList;
+                              _taskList = [];
+                            }
                           });
                         },
                         textInputAction: TextInputAction.search,
