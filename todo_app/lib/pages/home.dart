@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Schedule your tasks",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 26.0,
+                        fontSize: 20.0,
                         letterSpacing: 1.0,
                       ),
                       textAlign: TextAlign.center,
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Manage your tasks easily and effeciently",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
+                        fontSize: 12.0,
                         color: Colors.blueGrey,
                         letterSpacing: 0.75,
                       ),
