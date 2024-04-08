@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:toast/toast.dart';
 import 'package:todo_app/components/AppBar/update_task_app_bar.dart';
@@ -149,7 +150,7 @@ class _UpdateTaskState extends State<UpdateTask> {
               const Text(
                 "Title",
                 style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
                 ),
@@ -158,6 +159,7 @@ class _UpdateTaskState extends State<UpdateTask> {
               TextFormField(
                 cursorColor: colorAccent,
                 decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
                   border: OutlineInputBorder(),
                   hintText: "Task title",
                   focusedBorder: OutlineInputBorder(
@@ -173,6 +175,9 @@ class _UpdateTaskState extends State<UpdateTask> {
                     _title = value;
                   });
                 },
+                style: const TextStyle(
+                  fontSize: 12.0,
+                ),
                 initialValue: _task!.title,
                 textInputAction: TextInputAction.next,
               ),
@@ -180,7 +185,7 @@ class _UpdateTaskState extends State<UpdateTask> {
               const Text(
                 "Description",
                 style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
                 ),
@@ -189,6 +194,8 @@ class _UpdateTaskState extends State<UpdateTask> {
               TextFormField(
                 cursorColor: colorAccent,
                 decoration: const InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                   border: OutlineInputBorder(),
                   hintText: "Task description",
                   focusedBorder: OutlineInputBorder(
@@ -205,6 +212,9 @@ class _UpdateTaskState extends State<UpdateTask> {
                     _description = value;
                   });
                 },
+                style: const TextStyle(
+                  fontSize: 12.0,
+                ),
                 initialValue: _task!.description,
               ),
               const SizedBox(
@@ -213,9 +223,9 @@ class _UpdateTaskState extends State<UpdateTask> {
               Text(
                 _date == null
                     ? 'Date'
-                    : "Date - ${_date?.day.toString() as String}/${_date?.month.toString()}",
+                    : "Date - ${_date?.day.toString()}/${_date?.month.toString()}",
                 style: const TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
                 ),
@@ -224,6 +234,34 @@ class _UpdateTaskState extends State<UpdateTask> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TableCalendar(
+                  calendarStyle: const CalendarStyle(
+                    selectedTextStyle: TextStyle(
+                      fontSize: 11.0,
+                      color: Colors.white,
+                    ),
+                    defaultTextStyle: TextStyle(
+                      fontSize: 12.0,
+                    ),
+                    todayTextStyle: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.white,
+                    ),
+                    disabledTextStyle: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  headerStyle: const HeaderStyle(
+                    headerMargin: EdgeInsets.all(0),
+                  ),
+                  daysOfWeekStyle: const DaysOfWeekStyle(
+                    weekdayStyle: TextStyle(
+                      fontSize: 12.0,
+                    ),
+                    weekendStyle: TextStyle(
+                      fontSize: 12.0,
+                    ),
+                  ),
                   focusedDay: _task!.date,
                   firstDay: DateTime.now(),
                   lastDay: DateTime.utc(2099, 12, 31),
@@ -246,7 +284,7 @@ class _UpdateTaskState extends State<UpdateTask> {
               const Text(
                 "Priority",
                 style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
                 ),
@@ -255,7 +293,13 @@ class _UpdateTaskState extends State<UpdateTask> {
               Column(
                 children: [
                   ListTile(
-                    title: const Text('High'),
+                    title: const Text(
+                      'High',
+                      style: TextStyle(
+                        fontSize: 12.0,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.all(0),
                     leading: Radio<int>(
                       activeColor: colorAccent,
                       value: 1,
@@ -268,7 +312,13 @@ class _UpdateTaskState extends State<UpdateTask> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('Moderate'),
+                    title: const Text(
+                      'Moderate',
+                      style: TextStyle(
+                        fontSize: 12.0,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.all(0),
                     leading: Radio<int>(
                       activeColor: colorAccent,
                       value: 2,
@@ -281,7 +331,13 @@ class _UpdateTaskState extends State<UpdateTask> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('Low'),
+                    title: const Text(
+                      'Low',
+                      style: TextStyle(
+                        fontSize: 12.0,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.all(0),
                     leading: Radio<int>(
                       activeColor: colorAccent,
                       value: 3,
