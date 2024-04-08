@@ -217,7 +217,7 @@ class _UpdateTaskState extends State<UpdateTask> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TableCalendar(
-                  focusedDay: DateTime.now(),
+                  focusedDay: _task!.date,
                   firstDay: DateTime.now(),
                   lastDay: DateTime.utc(2099, 12, 31),
                   selectedDayPredicate: (day) {
