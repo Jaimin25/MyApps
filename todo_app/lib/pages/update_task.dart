@@ -159,7 +159,8 @@ class _UpdateTaskState extends State<UpdateTask> {
               TextFormField(
                 cursorColor: colorAccent,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
                   border: OutlineInputBorder(),
                   hintText: "Task title",
                   focusedBorder: OutlineInputBorder(
@@ -176,7 +177,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                   });
                 },
                 style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 14.0,
                 ),
                 initialValue: _task!.title,
                 textInputAction: TextInputAction.next,
@@ -195,7 +196,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                 cursorColor: colorAccent,
                 decoration: const InputDecoration(
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 14.0),
                   border: OutlineInputBorder(),
                   hintText: "Task description",
                   focusedBorder: OutlineInputBorder(
@@ -213,7 +214,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                   });
                 },
                 style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 14.0,
                 ),
                 initialValue: _task!.description,
               ),
@@ -296,7 +297,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                     title: const Text(
                       'High',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(0),
@@ -315,7 +316,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                     title: const Text(
                       'Moderate',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(0),
@@ -334,7 +335,7 @@ class _UpdateTaskState extends State<UpdateTask> {
                     title: const Text(
                       'Low',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(0),
