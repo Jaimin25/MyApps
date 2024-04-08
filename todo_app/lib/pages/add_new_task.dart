@@ -104,7 +104,8 @@ class _AddNewTaskState extends State<AddNewTask> {
               TextField(
                 cursorColor: colorAccent,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
                   border: OutlineInputBorder(),
                   hintText: "Task title",
                   focusedBorder: OutlineInputBorder(
@@ -121,7 +122,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                   });
                 },
                 style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 14.0,
                 ),
                 textInputAction: TextInputAction.next,
               ),
@@ -139,7 +140,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                 cursorColor: colorAccent,
                 decoration: const InputDecoration(
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 14.0),
                   border: OutlineInputBorder(),
                   hintText: "Task description",
                   focusedBorder: OutlineInputBorder(
@@ -157,7 +158,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                   });
                 },
                 style: const TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 14.0,
                 ),
               ),
               const SizedBox(
@@ -236,7 +237,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                     title: const Text(
                       'High',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(0),
@@ -255,7 +256,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                     title: const Text(
                       'Moderate',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(0),
@@ -274,7 +275,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                     title: const Text(
                       'Low',
                       style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     contentPadding: const EdgeInsets.all(0),
