@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/components/AppBar/home_app_bar.dart';
 import 'package:todo_app/components/tasks_list.dart';
 import 'package:todo_app/components/task_list_skeleton.dart';
 import 'package:todo_app/helpers/task_data_provider.dart';
@@ -18,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool loading = false;
   List<TaskModal>? _filterList;
   List<TaskModal>? _tempList;
-  int _selectedItem = 1;
+  int? _selectedItem = 1;
 
   @override
   void initState() {
@@ -47,11 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: homeAppBar(setState, _getTaskList, _filterList, _taskList,
-          _tempList, _selectedItem),
+      appBar: appBar(),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 18.0),
-        child: (_filterList == null || _filterList!.isEmpty) && !loading
+        child: _filterList!.isEmpty && !loading
             ? const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -101,9 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         onChanged: (value) {
                           setState(() {
                             if (value.isEmpty) {
+                              _selectedItem = 1;
                               _taskList = List.from(_tempList!);
                               _filterList = List.from(_tempList!);
-                              _selectedItem = 1;
                             }
                           });
                         },
@@ -195,6 +193,166 @@ class _HomeScreenState extends State<HomeScreen> {
         foregroundColor: Colors.white,
         child: const Icon(Icons.add),
       ),
+    );
+  }
+
+  AppBar appBar() {
+    return AppBar(
+      title: const Text(
+        "My Todos",
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      backgroundColor: colorBackground,
+      foregroundColor: Colors.white,
+      actions: [
+        Visibility(
+          visible: _taskList!.isNotEmpty || _filterList!.isNotEmpty,
+          child: IconButton(
+            onPressed: () {
+              _getTaskList();
+            },
+            icon: const Icon(Icons.refresh),
+            tooltip: "Refresh List",
+          ),
+        ),
+        Visibility(
+          visible: _taskList!.isNotEmpty || _filterList!.isNotEmpty,
+          child: PopupMenuButton(
+            icon: const Icon(Icons.filter_alt),
+            surfaceTintColor: Colors.white,
+            color: Colors.white,
+            initialValue: _selectedItem,
+            onSelected: (value) {
+              switch (value) {
+                case 1:
+                  {
+                    setState(() {
+                      if (_filterList != null) {
+                        _taskList = _filterList;
+                      }
+                      _taskList?.sort(
+                          (taskA, taskB) => taskA.date.compareTo(taskB.date));
+                      _selectedItem = 1;
+                    });
+                    break;
+                  }
+                case 2:
+                  {
+                    setState(() {
+                      if (_filterList != null) {
+                        _taskList = _filterList;
+                      }
+                      _taskList?.sort(
+                          (taskA, taskB) => taskB.date.compareTo(taskA.date));
+                      _selectedItem = 2;
+                    });
+                    break;
+                  }
+                case 3:
+                  {
+                    setState(() {
+                      if (_filterList != null) {
+                        _taskList = _filterList;
+                      }
+                      _filterList = List.from(_taskList!);
+                      _taskList?.sort((taskA, taskB) =>
+                          taskA.priority.compareTo(taskB.priority));
+                      _selectedItem = 3;
+                    });
+                    break;
+                  }
+                case 4:
+                  {
+                    setState(() {
+                      if (_filterList != null) {
+                        _taskList = _filterList;
+                      }
+                      _filterList = List.from(_taskList!);
+                      _taskList?.sort((taskA, taskB) =>
+                          taskB.priority.compareTo(taskA.priority));
+                      _selectedItem = 4;
+                    });
+                    break;
+                  }
+                case 5:
+                  {
+                    setState(() {
+                      if (_filterList != null) {
+                        _taskList = _filterList;
+                      }
+                      _filterList = List.from(_taskList!);
+                      _taskList?.removeWhere(
+                          (element) => element.status == 'Pending');
+                      _selectedItem = 5;
+                    });
+                    break;
+                  }
+                case 6:
+                  {
+                    setState(() {
+                      if (_filterList != null) {
+                        _taskList = _filterList;
+                      }
+                      _filterList = List.from(_taskList!);
+                      _taskList?.removeWhere(
+                          (element) => element.status == 'Completed');
+                      _selectedItem = 6;
+                    });
+                  }
+              }
+            },
+            itemBuilder: (BuildContext context) => [
+              const PopupMenuItem(
+                value: 1,
+                child: ListTile(
+                  leading: Icon(Icons.calendar_month),
+                  title: Text("Sort By Date (Asc)"),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 2,
+                child: ListTile(
+                  leading: Icon(Icons.calendar_month),
+                  title: Text("Sort By Date (Desc)"),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 3,
+                child: ListTile(
+                  leading: Icon(Icons.priority_high),
+                  title: Text("Priority (High to Low)"),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 4,
+                child: ListTile(
+                  leading: Icon(Icons.priority_high),
+                  title: Text("Priority (Low to High)"),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 5,
+                child: ListTile(
+                  leading: Icon(Icons.playlist_add_check),
+                  title: Text("Completed Tasks"),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 6,
+                child: ListTile(
+                  leading: Icon(Icons.pending_actions),
+                  title: Text("Pending Tasks"),
+                ),
+              ),
+            ],
+            tooltip: "Sort List",
+          ),
+        ),
+      ],
     );
   }
 }
