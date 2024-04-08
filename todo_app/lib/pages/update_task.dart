@@ -20,7 +20,7 @@ class _UpdateTaskState extends State<UpdateTask> {
   String _description = '';
   DateTime? _date;
 
-  int? _selectedOption = 1;
+  int? _selectedOption;
 
   Map? data;
 
@@ -128,6 +128,13 @@ class _UpdateTaskState extends State<UpdateTask> {
       }
       if (_date == null || _date.toString().isEmpty) {
         _date = _task!.date;
+      }
+      if (_selectedOption == null || _selectedOption.toString().isEmpty) {
+        _selectedOption = _task!.priority == "High"
+            ? 1
+            : _task!.priority == "Moderate"
+                ? 2
+                : 3;
       }
     });
     return Scaffold(
