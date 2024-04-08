@@ -67,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 26.0,
                         letterSpacing: 1.0,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                     Text(
                       "Manage your tasks easily and effeciently",
@@ -76,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.blueGrey,
                         letterSpacing: 0.75,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
