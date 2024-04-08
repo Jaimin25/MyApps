@@ -199,6 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   AppBar appBar() {
+    const priorityValues = {"High": 3, "Moderate": 2, "Low": 1};
     return AppBar(
       title: const Text(
         "My Todos",
@@ -262,7 +263,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                       _filterList = List.from(_taskList!);
                       _taskList?.sort((taskA, taskB) =>
-                          taskA.priority.compareTo(taskB.priority));
+                          (priorityValues[taskB.priority] ?? 0) -
+                          (priorityValues[taskA.priority] ?? 0));
                       _selectedItem = 3;
                     });
                     break;
@@ -275,7 +277,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                       _filterList = List.from(_taskList!);
                       _taskList?.sort((taskA, taskB) =>
-                          taskB.priority.compareTo(taskA.priority));
+                          (priorityValues[taskA.priority] ?? 0) -
+                          (priorityValues[taskB.priority] ?? 0));
                       _selectedItem = 4;
                     });
                     break;
